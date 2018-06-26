@@ -25,10 +25,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        if (optionalHelloService.isPresent()) {
-            return optionalHelloService.get().hello();
-        }
-        return helloService.hello();
+        return optionalHelloService.orElse(this.helloService).hello();
     }
 
     class DefaultHelloService implements HelloService {
